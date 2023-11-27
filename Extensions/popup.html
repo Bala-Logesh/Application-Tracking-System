@@ -1,0 +1,36 @@
+<!-- popup.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job Application Tracker</title>
+    <script src="popup.js" type="text/javascript"></script>
+    <script src="background.js" type="text/javascript"></script>
+    <script>
+      function handleChange() {
+      console.log("Inside handle change");
+      }
+    </script>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <h2>Job Application Details</h2>
+    <form id="jobApplicationForm">
+      <label for="companyName">Company Name:</label>
+      <input type="text" id="companyName" name="companyName" required>
+      <label for="description">Description:</label>
+      <input type="text" id="description" name="description" required>
+
+      <label for="subtasks">Updates:</label>
+      <input type="text" id="subtasks" name="subtasks" required>
+
+      <label for="items">Select a board:</label>
+      <select id="items" name="items" onchange = "handleChange()"></select>
+
+      <label for="columns">Select a Column:</label>
+      <select id="columns" name="columns">
+      </select>
+
+      <button type="button" id="submitApplication">Submit</button>
+    </form>
+  </body>
+</html>
