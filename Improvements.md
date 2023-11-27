@@ -24,4 +24,7 @@ In the project's earlier version, users were restricted to static fields, limiti
 *6. Data Persistence:*
    - The application ensures that board configurations, columns, updates, and user data are securely stored in a database for long-term accessibility.
 
+*6. Application reminders:*
+   - The application has a feature to save application links as reminders and get reminder email on the date specified by the user.
+
 These enhancements provide users with a highly adaptable job tracker and project management system, enabling them to tailor boards, columns, and updates to align with their specific needs. The drag-and-drop feature and dynamic column creation significantly enhance the user experience, making the tracking of tasks and jobs more efficient and interactive.

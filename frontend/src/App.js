@@ -80,7 +80,7 @@ function App() {
           }
         />
         <Route
-          path="/" exact
+          path="*" exact
           element={
             <>
               <HeaderSimple auth={auth} logout={handleLogout} />
