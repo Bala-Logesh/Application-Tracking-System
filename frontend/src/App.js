@@ -27,7 +27,7 @@ function App() {
       setAuth(true);
       getDataFunction().then((boards) => {
         dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
-      }).catch((err) => navigate("/boards"))
+      }).catch((err) => console.log(err))
     } else {
       setAuth(false);
     }

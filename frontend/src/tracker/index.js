@@ -21,8 +21,12 @@ function TrackerPage({ logout, getData, page, auth }) {
   })
 
   useEffect(() => {
-    getData();
-  }, [getData]);
+    if(auth && localStorage.getItem("token")) getData();
+
+    setTimeout(() => {
+      if(auth && localStorage.getItem("token")) getData();
+    }, 200)
+  }, [getData, auth, boards]);
 
   if (!activeBoard && boards.length > 0)
     dispatch(boardsSlice.actions.setBoardActive({ index: 0 }));

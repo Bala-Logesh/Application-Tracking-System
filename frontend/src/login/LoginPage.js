@@ -7,7 +7,7 @@ import { getDataFunction } from "../api/boardsHandler";
 import { useDispatch } from "react-redux";
 import boardsSlice from "../redux/boardsSlice";
 
-const LoginPage = ({ activeTab = "login", auth }) => {
+const LoginPage = ({ activeTab = "login", auth, setAuth}) => {
   const [err, setErr] = useState("");
   const [msg, setMsg] = useState("");
   const [loginData, setLoginData] = useState({ username: "", password: "" });
@@ -21,7 +21,7 @@ const LoginPage = ({ activeTab = "login", auth }) => {
 
   useEffect(() => {
     if (auth) {
-      navigate("/boards")
+      navigate("*")
     }
   }, [auth, navigate])
 
@@ -34,23 +34,26 @@ const LoginPage = ({ activeTab = "login", auth }) => {
     }
     getToken(loginData)
       .then((res) => {
+        console.log(res)
         if (res["error"]) {
           setMsg("");
           setErr("Error while logging in!");
-          throw new Error(res["error"]);
+          // throw new Error(res["error"]);
         }
         setLoginData({ username: "", password: "" });
         storeToken(res);
         setErr("");
         setMsg("");
+        setAuth(true)
 
-        getDataFunction().then((boards) => {
+        getDataFunction({Authorization: "Bearer " + res.token}).then((boards) => {
           dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
+          auth && navigate("/boards")
         }).catch((err) => console.log(err))
 
-        setInterval(() => {
-          navigate("/boards");
-        }, 500);
+        // setInterval(() => {
+        //   navigate("/boards");
+        // }, 500);
       })
       .catch((error) => {
         console.log(error);

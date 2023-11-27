@@ -6,11 +6,11 @@ const headers =  {
   "Access-Control-Allow-Credentials": "true"
 }
 
-export const getDataFunction = () => {
+export const getDataFunction = (authheader = null) => {
   return fetch({
     url: "/getBoards",
     method: "GET",
-    headers: headers,
+    headers: authheader ? {...headers, ...authheader} : headers,
   })
 }
 
