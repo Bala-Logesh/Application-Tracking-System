@@ -162,7 +162,7 @@ def test_login(client: FlaskClient):
     # Register a test user using the signup endpoint
     signup_data = {
         "fullName": "test",
-        "username": "test@example.com",
+        "username": unique_username,
         "password": "test_password",
     }
     signup_response = client.post("/users/signup", json=signup_data)
@@ -178,7 +178,7 @@ def test_login(client: FlaskClient):
 
     # Attempt to log in with the registered user credentials
     login_data = {
-        "username": "test",
+        "username": unique_username,
         "password": "test_password",
     }
     login_response = client.post("/users/login", json=login_data)
@@ -285,7 +285,7 @@ def test_create_application(client: FlaskClient):
     # Check if the application creation was successful
     assert create_application_response.status_code == 200
     assert create_application_response.get_json() == "Application Created"
-'''
+
 
 def test_create_application(client: FlaskClient):
     """
@@ -497,7 +497,7 @@ def test_add_boards(client: FlaskClient):
         # Raise the exception again to mark the test as failed
         raise e
 
-'''
+
 def test_update_column(client: FlaskClient):
     # Assuming you have a registered user and a board with columns for testing
     # Set up your test data accordingly
