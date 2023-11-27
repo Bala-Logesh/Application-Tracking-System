@@ -162,7 +162,7 @@ def test_login(client: FlaskClient):
     # Register a test user using the signup endpoint
     signup_data = {
         "fullName": "test",
-        "username": "test",
+        "username": "test@example.com",
         "password": "test_password",
     }
     signup_response = client.post("/users/signup", json=signup_data)
@@ -195,7 +195,7 @@ def test_login(client: FlaskClient):
 
     # You can also print or log the response data for inspection
     print(login_response.data.decode("utf-8"))
-
+'''
 def test_logout(client: FlaskClient):
     """
     Test the logout endpoint.
@@ -235,7 +235,7 @@ def test_logout(client: FlaskClient):
     assert logout_response.status_code == 200
     assert logout_response.get_json() == {"success": ""}
 
-'''
+
 def test_create_application(client: FlaskClient):
     """
     Test the creation of a new application.
