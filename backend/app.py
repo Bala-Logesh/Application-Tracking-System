@@ -375,37 +375,36 @@ def create_app():
     @app.route("/columns", methods=["POST"])
     def addColumns():
         data = request.json
-        print(data)
-        print("Extension has called this")
-        boardid = data["column"]["boardid"]
-        columnName = data["column"]["name"]
+        print("From extension:",data)
+        boardid = data['column']['boardid']
+        columnName = data['column']['name']
         columns = Columns.objects(board_id=boardid).all()
-        print(columns)
+        #print(columns)
         if len(columns) == 0:
             newColumn = Columns(
-                name=columnName, tasks=data["column"]["tasks"], board_id=boardid
+                name=columnName, tasks=data['column']['tasks'], board_id=boardid
             )
             newColumn.save()
             return jsonify(newColumn), 200
         for column in columns:
-            print(len(columns))
-            print(column)
+            #print(len(columns))
             if column.name.lower() == columnName.lower():
                 # column present
                 currentTasks = column.tasks
                 if len(currentTasks) != 0:
-                    currentTasks.append(data["column"]["tasks"])
+                    currentTasks.append(data['column']['tasks'])
+                    column.tasks = currentTasks
+                    column.save()
                 else:
-                    currentTasks = data["column"]["tasks"]
-                column.save()
+                    column.tasks = data['column']['tasks']
+                    column.save()
+                    print("Curent tasks after updating:",column.tasks)
                 return jsonify(column), 200
-            else:
-                newColumn = Columns(
-                    name=columnName, tasks=data["column"]["tasks"], board_id=boardid
-                )
-                newColumn.save()
-                return jsonify(newColumn), 200
-
+        
+        newColumn = Columns(name=columnName, tasks=data['column']['tasks'], board_id=boardid)
+        newColumn.save()
+        return jsonify(newColumn), 200
+                
     @app.route("/editcolumns", methods=["POST"])
     def update_column():
         try:
@@ -455,11 +454,18 @@ def create_app():
             print(error)
             return jsonify({"error": "Internal server error"}), 500
 
-    @app.route("/api/items", methods=["GET"])
-    def get_items():
+    @app.route("/getBoards/extension", methods=["GET"])
+    def get_boards_extension():
         names = Boards.objects.only("name", "id")
-        print(list(names))
         return jsonify(list(names))
+    
+    @app.route("/getColumns/extension", methods=["GET"])
+    def get_columns_extension():
+        header = request.headers
+        boardid = header['boardid']
+        columns = Columns.objects(board_id = boardid).only("name","id")
+        print(columns)
+        return jsonify(columns)
 
     @app.route("/updateapplications", methods=["POST"])
     def update_application():
