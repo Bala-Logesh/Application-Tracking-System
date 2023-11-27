@@ -400,7 +400,7 @@ def test_add_boards(client: FlaskClient):
         "password": "test_password",
     }
     signup_response = client.post("/users/signup", json=signup_data)
-    assert signup_response.status_code == 500
+    assert signup_response.status_code == 400
 
     # Attempt to log in with the registered user credentials
     login_data = {
