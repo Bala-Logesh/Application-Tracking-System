@@ -45,7 +45,7 @@ def client():
 
     app.config.from_pyfile("settings.py")
     app.config["MONGODB_SETTINGS"] = {
-        "db": "appTracker",
+        "db": "Test",
         "host": "mongodb+srv://atsse2000:Seproject2000@cluster0.rj2epqq.mongodb.net/",
     }
 
@@ -161,8 +161,8 @@ def test_login(client: FlaskClient):
     unique_username = generate_unique_username()
     # Register a test user using the signup endpoint
     signup_data = {
-        "fullName": "Test User",
-        "username": unique_username,
+        "fullName": "test",
+        "username": "test",
         "password": "test_password",
     }
     signup_response = client.post("/users/signup", json=signup_data)
@@ -178,7 +178,7 @@ def test_login(client: FlaskClient):
 
     # Attempt to log in with the registered user credentials
     login_data = {
-        "username": unique_username,
+        "username": "test",
         "password": "test_password",
     }
     login_response = client.post("/users/login", json=login_data)
