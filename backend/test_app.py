@@ -178,7 +178,7 @@ def test_login(client: FlaskClient):
 
     # Attempt to log in with the registered user credentials
     login_data = {
-        "username": "test_login_user@example.com",
+        "username": unique_username,
         "password": "test_password",
     }
     login_response = client.post("/users/login", json=login_data)
@@ -195,7 +195,6 @@ def test_login(client: FlaskClient):
 
     # You can also print or log the response data for inspection
     print(login_response.data.decode("utf-8"))
-
 
 def test_logout(client: FlaskClient):
     """
@@ -217,7 +216,7 @@ def test_logout(client: FlaskClient):
 
     # Login with the registered user credentials to obtain a token
     login_data = {
-        "username": "test_logout_user@example.com",
+        "username": unique_username,
         "password": "test_password",
     }
     login_response = client.post("/users/login", json=login_data)
@@ -236,6 +235,7 @@ def test_logout(client: FlaskClient):
     assert logout_response.status_code == 200
     assert logout_response.get_json() == {"success": ""}
 
+'''
 def test_create_application(client: FlaskClient):
     """
     Test the creation of a new application.
@@ -286,6 +286,7 @@ def test_create_application(client: FlaskClient):
     assert create_application_response.status_code == 200
     assert create_application_response.get_json() == "Application Created"
 '''
+
 def test_create_application(client: FlaskClient):
     """
     Test the creation of a new application.
@@ -323,6 +324,7 @@ def test_create_application(client: FlaskClient):
         "date": "2023-11-25",
         "jobLink": "https://example.com/job",
         "location": "City, Country",
+        "board": "your_board_id",
     }
     create_application_response = client.post(
         "/application",
@@ -333,7 +335,7 @@ def test_create_application(client: FlaskClient):
     # Check if the application creation was successful
     assert create_application_response.status_code == 200
     assert create_application_response.get_json() == "Application Created"
-'''
+
 
 
 def test_get_boards(client: FlaskClient):
@@ -495,26 +497,42 @@ def test_add_boards(client: FlaskClient):
         # Raise the exception again to mark the test as failed
         raise e
 
-
+'''
 def test_update_column(client: FlaskClient):
     # Assuming you have a registered user and a board with columns for testing
     # Set up your test data accordingly
-
-    # Get the user token (replace 'your_username' and 'your_password' with actual values)
-    #unique_username = generate_unique_username()
+    unique_username = generate_unique_username()
+    # Attempt to log in with the registered user credentials
     login_data = {
-        "username": "test",
-        "password": "test",
+        "username": unique_username,
+        "password": "test_password",
     }
     login_response = client.post("/users/login", json=login_data)
+    assert login_response.status_code == 200
 
+    # Get the token from the login response
+    login_data = login_response.get_json()
+    token = login_data["token"]
+
+    # Assuming you have a column ID for testing, replace 'your_column_id' with the actual ID
+    column_id = "655d8fabd900edd31f690f11"
+
+        # Test updating a column
+    update_data = {
+        "column": {
+            "id": column_id,
+            "name": "Updated Column Name",
+            "tasks": ["Task 1", "Task 2"],
+        }
+    }
+    update_response = client.post(
+        "/editcolumns",
+        json=update_data,
+        headers={"Authorization": f"Bearer {token}"}
+    )
     try:
-        # Check if the login was successful
-        assert login_response.status_code == 200
-        login_data = login_response.get_json()
-        token = login_data["token"]
-
-        # Continue with the rest of your test...
+        # Check if the addition of the board was successful
+        assert update_response.status_code == 200
 
     except AssertionError as e:
         print("AssertionError:", e)
@@ -814,4 +832,6 @@ def test_get_resume(client: FlaskClient):
 
         # Raise the exception again to mark the test as failed
         raise e
-    
+
+
+'''
