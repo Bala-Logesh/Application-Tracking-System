@@ -3,17 +3,20 @@ import crossIcon from "../assets/icon-cross.svg";
 import boardsSlice from "../redux/boardsSlice";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from "react-redux";
+import { addColumn, deleteColumn, getDataFunction, updateColumn } from "../api/boardsHandler";
 
 function AddEditBoardModal({ setIsBoardModalOpen, type }) {
   const dispatch = useDispatch();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [err, setErr] = useState("");
   const [boardName, setBoardName] = useState("");
+  const [deleteColumns, setDeleteColumns] = useState([])
+  const [createColumns, setCreateColumns] = useState([])
   const [newColumns, setNewColumns] = useState([
     { name: "Applied", tasks: [], id: uuidv4() },
     { name: "Rejected", tasks: [], id: uuidv4() },
     { name: "Waiting For Referral", tasks: [], id: uuidv4() },
   ]);
-  const [isValid, setIsValid] = useState(true);
   const board = useSelector((state) => state.boards).find(
     (board) => board.isActive
   );
@@ -21,7 +24,7 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
   if (type === "edit" && isFirstLoad) {
     setNewColumns(
       board.columns.map((col) => {
-        return { ...col, id: uuidv4() };
+        return { ...col };
       })
     );
     setBoardName(board.name);
@@ -29,39 +32,78 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
   }
 
   const validate = () => {
-    setIsValid(false);
     if (!boardName.trim()) {
+      setErr("Board name should not be empty");
       return false;
     }
     for (let i = 0; i < newColumns.length; i++) {
       if (!newColumns[i].name.trim()) {
+        setErr("Column names should not be empty");
         return false;
       }
     }
-    setIsValid(true);
+
+    setErr("");
     return true;
   };
 
   const onChangeColumnName = (id, newValue) => {
     setNewColumns((prevState) => {
-      const newState = [...prevState];
-      const column = newState.find((col) => col.id === id);
-      column.name = newValue;
+      const newState = prevState.map(col => {
+        if (col.id === id) {
+          col.name = newValue
+        }
+
+        return col
+      });
       return newState;
     });
   };
 
-  const onDeleteColumn = (id) => {
+  const onDeleteColumnEdit = (id) => {
+    setDeleteColumns(prev => [...prev, id])
+    setNewColumns((prevState) => prevState.filter((el) => el._id !== id));
+  };
+
+  const onDeleteColumnAdd = (id) => {
     setNewColumns((prevState) => prevState.filter((el) => el.id !== id));
   };
 
   const onSubmit = (type) => {
     setIsBoardModalOpen(false);
     if (type === "add") {
+      console.log("here")
       dispatch(boardsSlice.actions.addBoard({ name: boardName, newColumns }));
+      
+      getDataFunction().then((boards) => {
+        dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
+      }).catch((err) => console.log(err))
     } else {
-      dispatch(boardsSlice.actions.editBoard({ name: boardName, newColumns }));
+      console.log(deleteColumns.length)
+      console.log(createColumns.length)
+      console.log(deleteColumns)
+      console.log(createColumns)
+      if (deleteColumns.length > 0) {
+        deleteColumns.forEach(colid => deleteColumn(colid))
+      } 
+      
+      if (createColumns.length > 0) {
+        createColumns.forEach(id => {
+          let newcol = newColumns.find(col => col.id === id)
+          addColumn({name: newcol.name, boardid: board._id})
+        })
+      }
+      if (deleteColumns.length === 0 && createColumns.length === 0) {
+        newColumns.forEach(newcol => updateColumn(newcol))
+      }
+
+      setTimeout(() => {
+        getDataFunction().then((boards) => {
+          dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
+        }).catch((err) => console.log(err))
+      }, 500)
     }
+
   };
 
   return (
@@ -81,7 +123,9 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
         <h3 className="text-lg">
           {type === "edit" ? "Edit" : "Add New"} Board
         </h3>
-
+        <br />
+        {err !== "" && <p className="text-red-800 dark:text-red-400">{err}</p>}
+        {err === "" && <p className="opacity-0">{err}</p>}
         <div className="mt-8 flex flex-col space-y-1">
           <label className="text-sm dark:text-white text-gray-500">
             Board Name
@@ -94,7 +138,6 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
             id="board-name-input"
           />
         </div>
-
         <div className="mt-8 flex flex-col space-y-3">
           <label className="text-sm dark:text-white text-gray-500">
             Board Columns
@@ -105,6 +148,7 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
               <input
                 className="bg-transparent flex-grow px-4 py-2 rounded-md text-sm border-[0.5px] border-gray-600 focus:outline-[#635fc7] outline-[1px]"
                 onChange={(e) => {
+                  // console.log(column)
                   onChangeColumnName(column.id, e.target.value);
                 }}
                 type="text"
@@ -112,8 +156,9 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
               />
               <img
                 src={crossIcon}
+                alt="delete column button"
                 onClick={() => {
-                  onDeleteColumn(column.id);
+                  type === "add" ? onDeleteColumnAdd(column.id) : onDeleteColumnEdit(column._id);
                 }}
                 className="m-4 cursor-pointer"
               />
@@ -123,17 +168,19 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
             <button
               className="w-full items-center hover:opacity-70 dark:text-[#635fc7] dark:bg-white text-white bg-[#635fc7] py-2 rounded-full"
               onClick={() => {
-                setNewColumns((state) => [
-                  ...state,
-                  { name: "", tasks: [], id: uuidv4() },
+                let id = uuidv4() 
+                setNewColumns((prev) => [
+                  ...prev,
+                  { name: "", tasks: [], id:id },
                 ]);
+                setCreateColumns(prev => [...prev, id])
               }}
             >
               + Add New Column
             </button>
             <button
               onClick={() => {
-                const isValid = validate();
+                let isValid = validate();
                 if (isValid === true) onSubmit(type);
               }}
               className="w-full items-center hover:opacity-70 dark:text-white dark:bg-[#635fc7] mt-8 relative text-white bg-[#635fc7] py-2 rounded-full"

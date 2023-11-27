@@ -14,8 +14,8 @@ function AddEditTaskModal({
 }) {
   const dispatch = useDispatch();
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [isValid, setIsValid] = useState(true);
   const [title, setTitle] = useState("");
+  const [err, setErr] = useState("");
   const [description, setDescription] = useState("");
   const board = useSelector((state) => state.boards).find(
     (board) => board.isActive
@@ -46,16 +46,16 @@ function AddEditTaskModal({
   };
 
   const validate = () => {
-    setIsValid(false);
     if (!title.trim()) {
+      setErr("Task name should not be empty");
       return false;
     }
     for (let i = 0; i < subtasks.length; i++) {
       if (!subtasks[i].title.trim()) {
+        setErr("Update should not be empty");
         return false;
       }
     }
-    setIsValid(true);
     return true;
   };
 
@@ -121,14 +121,16 @@ function AddEditTaskModal({
        shadow-md shadow-[#364e7e1a] max-w-md mx-auto  w-full px-8  py-8 rounded-xl"
       >
         <h3 className=" text-lg ">
-          {type === "edit" ? "Edit" : "Add New"} Update
+          {type === "edit" ? "Edit" : "Add New"} Task
         </h3>
 
         {/* Update Name */}
-
+        <br />
+        {err !== "" && <p className="text-red-800 dark:text-red-400">{err}</p>}
+        {err === "" && <p className="opacity-0">{err}</p>}
         <div className="mt-8 flex flex-col space-y-1">
           <label className="  text-sm dark:text-white text-gray-500">
-            Update Info
+            Task Info
           </label>
           <input
             value={title}
@@ -172,6 +174,7 @@ function AddEditTaskModal({
               />
               <img
                 src={crossIcon}
+                alt="Delete subtask button"
                 onClick={() => {
                   onDelete(subtask.id);
                 }}
@@ -209,7 +212,7 @@ function AddEditTaskModal({
           </select>
           <button
             onClick={() => {
-              const isValid = validate();
+              let isValid = validate();
               if (isValid) {
                 onSubmit(type);
                 setIsAddTaskModalOpen(false);

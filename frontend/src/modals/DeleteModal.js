@@ -18,15 +18,23 @@ function DeleteModal({ type, title, onDeleteBtnClick, setIsDeleteModalOpen }) {
         <h3 className=" font-bold text-red-500 text-xl  ">
           Delete this {type}?
         </h3>
-        {type === "task" ? (
+        {type === "task" && (
           <p className="text-gray-500 font-[600] tracking-wide text-xs pt-6">
             Are you sure you want to delete the "{title}" update and its info?
             This action cannot be reversed.
           </p>
-        ) : (
+        )}
+        {type === "board" && (
           <p className="text-gray-500 font-[600] tracking-wide text-xs pt-6">
             Are you sure you want to delete the "{title}" section? This action
             will remove all columns and info and cannot be reversed.
+          </p>
+        )}
+
+        {type === "application" && (
+          <p className="text-gray-500 font-[600] tracking-wide text-xs pt-6">
+            Are you sure you want to delete the "{title}" application?
+            This action cannot be reversed.
           </p>
         )}
 

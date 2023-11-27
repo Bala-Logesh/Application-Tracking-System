@@ -36,14 +36,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
     if (e.target !== e.currentTarget) {
       return;
     }
-    dispatch(
-      boardsSlice.actions.setTaskStatus({
-        taskIndex,
-        colIndex,
-        newColIndex,
-        status,
-      })
-    );
+      dispatch(boardsSlice.actions.dragTask({ colIndex: newColIndex, prevColIndex: colIndex, taskIndex }))
     setIsTaskModalOpen(false);
   };
 
@@ -143,6 +136,7 @@ function TaskModal({ taskIndex, colIndex, setIsTaskModalOpen }) {
           onDeleteBtnClick={onDeleteBtnClick}
           type="task"
           title={task.title}
+          setIsDeleteModalOpen={setIsDeleteModalOpen}
         />
       )}
 
