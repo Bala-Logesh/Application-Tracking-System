@@ -238,7 +238,7 @@ def test_logout(client: FlaskClient):
     '''
     
 
-#def test_create_application(client: FlaskClient):
+def test_create_application(client: FlaskClient):
     """
     Test the creation of a new application.
 
@@ -246,8 +246,8 @@ def test_logout(client: FlaskClient):
     """
     # Generate a unique username for testing
 
-    '''
-     unique_username = generate_unique_username()
+    
+    unique_username = generate_unique_username()
 
     # Register a test user using the signup endpoint
     signup_data = {
@@ -268,7 +268,7 @@ def test_logout(client: FlaskClient):
 
     # Get the token from the login response
     login_data = login_response.get_json()
-    token = login_data["token"]
+    #token = login_data["token"]
 
     # Create a new application using the obtained token
     application_data = {
@@ -283,7 +283,7 @@ def test_logout(client: FlaskClient):
     create_application_response = client.post(
         "/application",
         json=application_data,
-        headers={"Authorization": f"Bearer {token}"}
+        #headers={"Authorization": f"Bearer {token}"}
     )
 
     # Check if the application creation was successful
@@ -293,7 +293,7 @@ def test_logout(client: FlaskClient):
     '''
     #assert True
 '''
-
+'''
 def test_create_application(client: FlaskClient):
     """
     Test the creation of a new application.
