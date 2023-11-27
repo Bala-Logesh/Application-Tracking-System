@@ -174,7 +174,7 @@ def test_login(client: FlaskClient):
     if 'error' in response_data:
         print(response_data['error'])
     # Check if the user registration was successful
-    assert signup_response.status_code == 500
+    assert signup_response.status_code == 400
 
     # Attempt to log in with the registered user credentials
     login_data = {
