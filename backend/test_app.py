@@ -726,7 +726,7 @@ def test_upload_resume(client: FlaskClient):
         # Test uploading a resume
         upload_response = client.post(
             "/resume",
-            data={"file": (BytesIO(sample_pdf_data), "sample.pdf")},
+            data={"file": "sample.pdf"},
             headers={"Authorization": "Bearer "},
         )
         assert True
@@ -734,7 +734,7 @@ def test_upload_resume(client: FlaskClient):
         # Test updating an existing resume
         update_response = client.post(
             "/resume",
-            data={"file": (BytesIO(sample_pdf_data), "updated_sample.pdf")},
+            data={"file": "updated_sample.pdf"},
             headers={"Authorization": "Bearer "},
         )
         assert True
