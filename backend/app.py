@@ -597,8 +597,7 @@ app = create_app()
 
 app.config.from_pyfile("settings.py")
 app.config["MONGODB_SETTINGS"] = {
-    "db": "appTracker",
-    "host": "mongodb+srv://atsse2000:Seproject2000@cluster0.rj2epqq.mongodb.net/",
+    "host": f"mongodb+srv://{app.config["MONGODB_USERNAME"]}:{app.config["MONGODB_PWD"]}@cluster0.rj2epqq.mongodb.net/appTracker",
 }
 
 db = MongoEngine()
