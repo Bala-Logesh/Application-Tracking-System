@@ -28,7 +28,7 @@ def generate_unique_username():
 
     :return: Unique username
     """
-    return f"test_user_{uuid.uuid4().hex[:8]}@example.com"
+    return f"test_{uuid.uuid4().hex[:8]}@example.com"
 
 @pytest.fixture
 def client():
@@ -45,7 +45,7 @@ def client():
 
     app.config.from_pyfile("settings.py")
     app.config["MONGODB_SETTINGS"] = {
-        "db": "Test",
+        "db": "appTracker",
         "host": "mongodb+srv://atsse2000:Seproject2000@cluster0.rj2epqq.mongodb.net/",
     }
 
