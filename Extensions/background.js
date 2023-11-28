@@ -3,21 +3,21 @@
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   if (request.action === 'storeInMongoDB') {
     // Send job application details to your Flask backend with MongoDB
-    //get userid from localStorage:
-    //userid = localStorage.getItem('token').split(".")[0]
-    var token = "655c01111125be0e8ba12563.7f14a52c-112f-42d4-b9e7-d0c0984b143a"
-    tokenParts = token.split(".");
-    userid = tokenParts[0];
-    console.log(userid)
-    if(userid === null){
-      throw new Error("Userid is null")
-    }
+    let token = ''
+
+    const tabs = chrome.tabs.query({ active: true, currentWindow: true });
+    const currentTabId = tabs[0].id;
+
+    // Execute a script in the context of the current tab to retrieve local storage data
+    chrome.tabs.executeScript(currentTabId, { code: 'localStorage.getItem("your_key")' }, function(results) {
+      token = results[0];
+    });
+
     fetch('http://127.0.0.1:5000/columns', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // 'Authorization':localStorage.getItem('token')
-        'Authorization':token
+          'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
       "column":{

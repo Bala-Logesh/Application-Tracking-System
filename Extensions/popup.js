@@ -1,12 +1,27 @@
 
 console = chrome.extension.getBackgroundPage().console;
-//window.onload = function(){
-  // alert("window loaded");
-  //var el = document.getElementById('companyName');
+
 document.addEventListener("DOMContentLoaded",function(){
-  function handler() {
-    fetch('http://127.0.0.1:5000/getBoards/extension')
-        .then(response =>response.json())
+    function handler() {
+      let token = ''
+
+      const tabs = chrome.tabs.query({ active: true, currentWindow: true });
+      const currentTabId = tabs[0].id;
+
+      // Execute a script in the context of the current tab to retrieve local storage data
+      chrome.tabs.executeScript(currentTabId, { code: 'localStorage.getItem("your_key")' }, function(results) {
+        token = results[0];
+      });
+
+    fetch('http://127.0.0.1:5000/getBoards/extension',
+    {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+        .then(response => response.json())
         .then(items => {
           // Populate the dropdown with fetched items
           console.log(items);

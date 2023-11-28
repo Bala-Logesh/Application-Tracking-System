@@ -49,12 +49,10 @@ const LoginPage = ({ activeTab = "login", auth, setAuth}) => {
 
         getDataFunction({Authorization: "Bearer " + res.token}).then((boards) => {
           dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
-          navigate("/boards")
+          setInterval(() => {
+            navigate("/boards")
+          }, 300);
         }).catch((err) => console.log(err))
-
-        // setInterval(() => {
-        //   navigate("/boards");
-        // }, 500);
       })
       .catch((error) => {
         console.log(error);
