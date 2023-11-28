@@ -1,5 +1,5 @@
 <!-- Video -->
-[![Watch the video](https://img.youtube.com/vi/VAieiJGv9_Q/maxresdefault.jpg)](https://youtu.be/VAieiJGv9_Q)
+[![Watch the video](./resources/yt_thumbnail.png)](https://www.youtube.com/watch?v=m3nyYl1z-t4)
 
 <!-- Insert Functionality video here -->
 
