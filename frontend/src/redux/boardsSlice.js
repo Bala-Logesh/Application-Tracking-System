@@ -25,10 +25,10 @@ const boardsSlice = createSlice({
     },
     editBoard: (state, action) => {
       const {boardid, name} = action.payload;
-      const board = state.find((brd) => brd._id.$oid === boardid);
+      const board = state.find((brd) => brd._id === boardid);
       
       board.name = name;
-      updateBoard(board);
+      updateBoard(action.payload);
     },
     deleteBoard: (state, action) => {
       let board_id = action.payload.boardid

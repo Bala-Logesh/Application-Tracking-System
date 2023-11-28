@@ -25,7 +25,7 @@ const Application = ({ application, setAppls }) => {
   }
 
   return (
-  <div className="w-full" style={{minWidth: "78vw"}}>
+  <div className="w-full" style={{minWidth: "76vw"}}>
       <div className="w-full flex flex-col justify-between items-center first:my-5 rounded-lg bg-white dark:bg-[#2b2c37] shadow-[#364e7e1a] py-6 px-6 shadow-lg dark:text-white lg:flex-row gap-x-10">
         <div>
           <div className='flex gap-2'>

@@ -15,7 +15,6 @@ export const getDataFunction = (authheader = null) => {
 }
 
 export const createNewBoard = (board) => {
-  console.log(JSON.stringify({ board }))
   fetch({
     method: "POST",
     url: "/boards",
@@ -32,10 +31,10 @@ export const createNewBoard = (board) => {
 
 export const updateBoard = (board) => {
   fetch({
-    method: "PUT",
-    url: "/boards",
-    body: JSON.stringify({ board }),
-    headers: headers
+    method: "POST",
+    url: "/editboards",
+    body: JSON.stringify(board),
+    headers: {...headers, "Content-Type": "application/json"}
   })
     .then((res) => {
       console.log("board updated", board);
@@ -58,8 +57,6 @@ export const deleteBoard = (board_id) => {
 };
 
 export const addColumn = (column) => {
-  console.log({column})
-  console.log(JSON.stringify({column}))
   return fetch({
     method: "POST",
     url: '/columns',

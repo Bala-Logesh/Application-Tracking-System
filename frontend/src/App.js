@@ -44,7 +44,7 @@ function App() {
           element={
             <>
               <HeaderSimple auth={auth} logout={handleLogout} />
-              <LoginPage activeTab="login" auth={auth} />
+              <LoginPage activeTab="login" auth={auth} setAuth={setAuth} />
             </>
           }
         />

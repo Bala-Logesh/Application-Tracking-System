@@ -37,8 +37,8 @@ function Home({ page = "boards" }) {
     <div
       className={
         windowSize[0] >= 768 && isSideBarOpen
-          ? " bg-[#f4f7fd]  scrollbar-hide h-screen flex dark:bg-[#20212c]  overflow-x-scroll gap-6  ml-[350px]"
-          : "bg-[#f4f7fd]  scrollbar-hide h-screen flex    dark:bg-[#20212c] overflow-x-scroll gap-6 "
+          ? " bg-[#f4f7fd]  scrollbar-hide flex dark:bg-[#20212c]  overflow-x-scroll gap-6  ml-[400px]"
+          : "bg-[#f4f7fd]  scrollbar-hide flex    dark:bg-[#20212c] overflow-x-scroll gap-6 "
       }
     >
       {windowSize[0] >= 768 && (
@@ -64,7 +64,7 @@ function Home({ page = "boards" }) {
                   onClick={() => {
                     setIsBoardModalOpen(true);
                   }}
-                  className=" h-screen dark:bg-[#2b2c3740] flex justify-center items-center font-bold text-2xl hover:text-[#635FC7] transition duration-300 cursor-pointer bg-[#E9EFFA] scrollbar-hide mb-2   mx-5 pt-[90px] min-w-[280px] text-[#828FA3] mt-[135px] rounded-lg "
+                  className=" h-screen dark:bg-[#2b2c3740] flex justify-center items-center font-bold text-2xl hover:text-[#635FC7] transition duration-300 cursor-pointer bg-[#E9EFFA] scrollbar-hide mb-2   mx-5 pt-[90px] min-w-[280px] text-[#828FA3] mt-[135px] rounded-lg " style={{height: '87vh'}}
                 >
                   + New Column
                 </div>

@@ -72,17 +72,12 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
   const onSubmit = (type) => {
     setIsBoardModalOpen(false);
     if (type === "add") {
-      console.log("here")
       dispatch(boardsSlice.actions.addBoard({ name: boardName, newColumns }));
       
       getDataFunction().then((boards) => {
         dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
       }).catch((err) => console.log(err))
     } else {
-      console.log(deleteColumns.length)
-      console.log(createColumns.length)
-      console.log(deleteColumns)
-      console.log(createColumns)
       if (deleteColumns.length > 0) {
         deleteColumns.forEach(colid => deleteColumn(colid))
       } 
@@ -93,9 +88,12 @@ function AddEditBoardModal({ setIsBoardModalOpen, type }) {
           addColumn({name: newcol.name, boardid: board._id})
         })
       }
+
       if (deleteColumns.length === 0 && createColumns.length === 0) {
         newColumns.forEach(newcol => updateColumn(newcol))
       }
+
+      dispatch(boardsSlice.actions.editBoard({ name: boardName, boardid: board._id }));
 
       setTimeout(() => {
         getDataFunction().then((boards) => {

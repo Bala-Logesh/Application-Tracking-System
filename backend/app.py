@@ -375,42 +375,57 @@ def create_app():
     @app.route("/columns", methods=["POST"])
     def addColumns():
         data = request.json
-        print("From extension:",data)
-        boardid = data['column']['boardid']
-        columnName = data['column']['name']
+        print("From extension:", data)
+        boardid = data["column"]["boardid"]
+        columnName = data["column"]["name"]
         columns = Columns.objects(board_id=boardid).all()
-        #print(columns)
+        # print(columns)
         if len(columns) == 0:
             newColumn = Columns(
-                name=columnName, tasks=data['column']['tasks'], board_id=boardid
+                name=columnName, tasks=data["column"]["tasks"], board_id=boardid
             )
             newColumn.save()
             return jsonify(newColumn), 200
         for column in columns:
-            #print(len(columns))
+            # print(len(columns))
             if column.name.lower() == columnName.lower():
                 # column present
                 currentTasks = column.tasks
                 if len(currentTasks) != 0:
-                    currentTasks.append(data['column']['tasks'])
+                    currentTasks.append(data["column"]["tasks"])
                     column.tasks = currentTasks
                     column.save()
                 else:
-                    column.tasks = data['column']['tasks']
+                    column.tasks = data["column"]["tasks"]
                     column.save()
-                    print("Curent tasks after updating:",column.tasks)
+                    print("Curent tasks after updating:", column.tasks)
                 return jsonify(column), 200
-        
-        newColumn = Columns(name=columnName, tasks=data['column']['tasks'], board_id=boardid)
+
+        newColumn = Columns(
+            name=columnName, tasks=data["column"]["tasks"], board_id=boardid
+        )
         newColumn.save()
         return jsonify(newColumn), 200
-                
+
+    @app.route("/editboards", methods=["POST"])
+    def edit_board():
+        try:
+            data = request.json
+            boardid = data['boardid']
+            name = data['name']
+            board = Boards.objects(id=boardid).first()
+            board.name = name
+            board.save()
+            return jsonify(boardid), 200
+        except Exception as error:
+            print(error)
+            return jsonify({"error": "Internal server error"}), 500
+
     @app.route("/editcolumns", methods=["POST"])
     def update_column():
         try:
             userid = get_userid_from_header()
             data = request.json
-            print("data ", data)
             if "id" in data["column"]:
                 columnid = data["column"]["id"]
                 column = Columns.objects(id=columnid).first()
@@ -456,14 +471,16 @@ def create_app():
 
     @app.route("/getBoards/extension", methods=["GET"])
     def get_boards_extension():
-        names = Boards.objects.only("name", "id")
+        userid = get_userid_from_header()
+        names = Boards.objects(user_id=userid).only("name", "id")
+        print(names)
         return jsonify(list(names))
-    
+
     @app.route("/getColumns/extension", methods=["GET"])
     def get_columns_extension():
         header = request.headers
-        boardid = header['boardid']
-        columns = Columns.objects(board_id = boardid).only("name","id")
+        boardid = header["boardid"]
+        columns = Columns.objects(board_id=boardid).only("name", "id")
         print(columns)
         return jsonify(columns)
 
@@ -596,9 +613,12 @@ app = create_app()
 
 
 app.config.from_pyfile("settings.py")
-print("mongodb+srv://" + str(app.config["MONGODB_USERNAME"]) + ":" + str(app.config["MONGODB_PWD"]) + "@cluster0.rj2epqq.mongodb.net/appTracker")
 app.config["MONGODB_SETTINGS"] = {
-    "host": "mongodb+srv://" + str(app.config["MONGODB_USERNAME"]) + ":" + str(app.config["MONGODB_PWD"]) + "@cluster0.rj2epqq.mongodb.net/appTracker",
+    "host": "mongodb+srv://"
+    + str(app.config["MONGODB_USERNAME"])
+    + ":"
+    + str(app.config["MONGODB_PWD"])
+    + "@cluster0.rj2epqq.mongodb.net/appTracker",
 }
 
 db = MongoEngine()

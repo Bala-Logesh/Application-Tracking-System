@@ -37,7 +37,8 @@ const LoginPage = ({ activeTab = "login", auth, setAuth}) => {
         console.log(res)
         if (res["error"]) {
           setMsg("");
-          setErr("Error while logging in!");
+          setErr("Wrong email or password!");
+          return
           // throw new Error(res["error"]);
         }
         setLoginData({ username: "", password: "" });
@@ -48,7 +49,7 @@ const LoginPage = ({ activeTab = "login", auth, setAuth}) => {
 
         getDataFunction({Authorization: "Bearer " + res.token}).then((boards) => {
           dispatch(boardsSlice.actions.setInitialData({ initialData: boards }));
-          auth && navigate("/boards")
+          navigate("/boards")
         }).catch((err) => console.log(err))
 
         // setInterval(() => {
