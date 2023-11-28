@@ -1,0 +1,2731 @@
+{
+	"info": {
+		"_postman_id": "ff139fc4-dbf0-4522-b97a-ae4ad34ae56b",
+		"name": "Application Tracking System API Documentation",
+		"description": "For anytime API support please feel free to contact [atsse2000@gmail.com](https://atsse2000@gmail.com)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17890241",
+		"_collection_link": "https://universal-astronaut-36408.postman.co/workspace/Ratish-Kumar-S~62609a02-f2cf-4358-95b0-85b1ff744e06/collection/17890241-ff139fc4-dbf0-4522-b97a-ae4ad34ae56b?action=share&source=collection_link&creator=17890241"
+	},
+	"item": [
+		{
+			"name": "Root Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						""
+					]
+				},
+				"description": "This is an HTTP GET request to the root URL of the server. The purpose of this endpoint is to check the status of the server and ensure that it is up and running.\n\n### Request\n\nThe request does not require any parameters.\n\n### Response\n\nThe response will have a status code of 200 if the server is up and running. The response body will contain a JSON object with a \"message\" field. The value of the \"message\" field will indicate the status of the server.\n\nExample response:\n\n``` json\n{\n    \"message\": \"Server up and running\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:5000/",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 05:43:44 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Server up and running\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Signup Endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"    const responseBody = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseBody).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body is a string\", function () {\r",
+							"    const responseBody = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseBody).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body is equal to empty string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.equal(\"\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"// Stores the response body in an environment or global variable\r",
+							"var responseBody = pm.response.text();\r",
+							"pm.globals.set(\"responseBody\", responseBody);// Test to check the response content type\r",
+							"pm.test(\"Response content type is JSON\", function() {\r",
+							"    pm.response.to.have.header('Content-Type', 'application/json');\r",
+							"});pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is not empty\", function () {\r",
+							"    const responseBody = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseBody).to.not.be.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is a string\", function () {\r",
+							"    const responseBody = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseBody).to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is equal to empty string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.equal(\"\");\r",
+							"});\r",
+							"\r",
+							"var responseBody = pm.response.text();\r",
+							"pm.globals.set(\"responseBody\", responseBody);\r",
+							"\r",
+							"pm.test(\"Response content type is JSON\", function() {\r",
+							"    pm.response.to.have.header('Content-Type', 'application/json');\r",
+							"});// Stores the userId in an environment or global variable\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.user.id;\r",
+							"pm.globals.set(\"userId\", userId);// Stores the userId in an environment or global variable\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.user.id;\r",
+							"pm.globals.set(\"userId\", userId);// Stores the userId in an environment or global variable\r",
+							"var jsonData = pm.response.json();\r",
+							"var userId = jsonData.user.id;\r",
+							"pm.globals.set(\"userId\", userId);pm.test(\"Response status code is 500\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body is an object with an error property\", function () {\r",
+							"    pm.expect(pm.response.json()).to.be.an('object').that.has.property('error');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\":\"fullName\",\r\n    \"username\":\"Username@email.com\",\r\n    \"password\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users/signup",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"signup"
+					]
+				},
+				"description": "This API endpoint allows users to sign up by creating a new account. It is an HTTP POST request that should be sent to [http://127.0.0.1:5000/users/signup](http://127.0.0.1:5000/users/signup).\n\n### Request Parameters\n\nIt is expected that the request body will contain the necessary information to create a new user account, such as fullname,username as email and password.\n\n### Response\n\nThe response to this request will vary based on the success or failure of the signup process.\n\n- If the signup is successful, the response will have a status code of 200 and will contain the message \"User Created\".\n- If there is an error during the signup process, the response will have a status code of 500 and will contain an error message in the \"error\" field of the response body.\n- There can also be instance of 400 Bad requests when same username is given again for signing up.\n    \n\n### Examples\n\nExample 1: Successful Signup **200**\n\n```\nHTTP/1.1 200 OK\nContent-Type: application/json\n{\n    \"message\": \"User Created\"\n}\n\n ```\n\nExample 2: Error during Signup **500**\n\n```\nHTTP/1.1 500 Internal Server Error\nContent-Type: application/json\n{\n    \"error\": \"Internal server error\"\n}\n\n ```\n\nExample 3: Error for duplicate username **400**\n\n```\n  \"error\": \"Username already exists\"\n\n ```\n\nPlease note that the examples provided are for illustrative purposes and the actual response may vary based on the implementation."
+			},
+			"response": [
+				{
+					"name": "/users/signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"fullName\",\r\n    \"username\":\"Usernames@email.com\",\r\n    \"password\":\"passwords\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 05:45:17 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"User Created\""
+				},
+				{
+					"name": "/users/signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"fullName\",\r\n    \"username\":\"Username@email.com\",\r\n    \"password\":\"passwords\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 05:44:29 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Username already exists\"\n}"
+				},
+				{
+					"name": "/users/signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"fullName\",\r\n    \"username\":\"Usernamess@email.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"signup"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 05:46:47 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Endpoint",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Username@email.com\",\r\n    \"password\":\"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/users/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"login"
+					]
+				},
+				"description": "This API endpoint is used to log in a user. It is an HTTP POST request that should be sent to the URL `http://127.0.0.1:5000/users/login`.\n\n**Request Parameter:**\n\nThe request should include the necessary parameters for user authentication, such as a username and password. The specific details of these parameters are not provided.\n\n**Response**\n\nThe response from the server will have a status code of 500 in case of an error. The response body will contain an \"error\" field with an empty string value.\n\nHere are some examples of possible responses:\n\nExample 1: Status Code **200 Success**\n\n``` json\n{\n    \"expiry\": \"11/22/2023, 23:36:30\",\n    \"token\": \"655d7f360374916d1b4d5ab9.a8491591-e5db-46ce-a3fc-2c5207dd9c71\"\n}\n\n ```\n\nExample 2: Error incorrect password **404 Bad Request**\n\n``` json\n{\n    \"error\": \"Wrong username or password\"\n}\n\n ```\n\nExample 3: Status Code **500**\n\n``` json\n{\n     \"error\": \"Internal server error\"\n}\n\n ```\n\nPlease note that the specific values for the \"expiry\" and \"token\" fields may vary in each response.\n\nTo successfully log in a user, ensure that the provided username and password are correct. If there is an error, the response will contain an \"error\" field with a corresponding error message."
+			},
+			"response": [
+				{
+					"name": "/users/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"username@email.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 04:28:13 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Wrong username or password\"\n}"
+				},
+				{
+					"name": "/users/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Username@email.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "106"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 04:36:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"expiry\": \"11/22/2023, 23:36:30\",\n    \"token\": \"655d7f360374916d1b4d5ab9.a8491591-e5db-46ce-a3fc-2c5207dd9c71\"\n}"
+				},
+				{
+					"name": "/users/login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"Username@email.com\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 04:45:33 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/users/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"logout"
+					]
+				},
+				"description": "This API endpoint is used to log out a user. It sends an HTTP POST request to the URL `http://127.0.0.1:5000/users/logout`.\n\n### Request Parameters\n\nThis endpoint does not require any request parameters but provide the token you get from the login in the header section's bearer token.\n\n### Response\n\nThe response for this request is a JSON object with the following properties:\n\n- `success`: A string indicating the success status of the logout operation.\n    \n\n### Examples\n\nHere are some examples of responses for this request:\n\nExample 1: Successful Logout **200**\n\n```\n{\n    \"success\": \"\"\n}\n\n ```\n\nExample 2: Error **500**\n\n```\n{\n    \"error\": \"Internal server error\"\n}\n\n ```\n\nIn case of an error, the response will have a status code of 500 and an empty `error` property."
+			},
+			"response": [
+				{
+					"name": "/users/logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "15"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 04:55:44 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": \"\"\n}"
+				},
+				{
+					"name": "/users/logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/users/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"users",
+								"logout"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 04:56:46 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Applications Retrival Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.1df4aa44-f921-4481-a660-985588ced1e6",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/application",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"application"
+					]
+				},
+				"description": "This endpoint allows you to retrieve a list of job applications. It sends an HTTP GET request to the URL `http://127.0.0.1:5000/application`. The response will contain an array of job application objects, each containing the following properties:\n\n- `_id`: The unique identifier for the job application.\n- `companyName`: The name of the company for the job application.\n- `date`: The date of the job application.\n- `jobLink`: The link to the job posting.\n- `jobTitle`: The title of the job application.\n- `location`: The location of the job application.\n- `user_id`: The unique identifier of the user who submitted the job application.\n    \n\n**Request Parameter:**\n\nThe request should include the necessary parameters for user authentication, such as a username and password. The specific details of these parameters are not provided.\n\n**Response**\n\nThe response from the server will have a status code of 500 in case of an error. The response body will contain an \"error\" field with an empty string value and it returns 200 if it is success.\n\nHere are some examples of possible responses:\n\nExample 1: Status Code **200 Success**\n\n``` json\n[\n    {\n        \"_id\": \"656050c61c62131aab829cdd\",\n        \"companyName\": \"companyName\",\n        \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n        \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n        \"jobTitle\": \"New job application\",\n        \"location\": \"USA\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    },\n    {\n        \"_id\": \"656051aec80a304b5a9fbba4\",\n        \"companyName\": \"companyName\",\n        \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n        \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n        \"jobTitle\": \"New job application\",\n        \"location\": \"USA\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    }\n]\n\n\n ```\n\nExample 2: Status Code **500**\n\n``` json\n{\n     \"error\": \"Internal server errr\"\n}\n\n ```\n\nPlease note that the actual response may contain different values for the properties, but the structure will remain the same.\n\nTo use this endpoint, send an HTTP GET request to the specified URL. No request parameters are required. The response will contain the list of job applications in the specified format.\n\nMake sure to handle any authentication or authorization requirements before making this request."
+			},
+			"response": [
+				{
+					"name": "Applications Retrival Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "678"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Nov 2023 07:03:28 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"656050c61c62131aab829cdd\",\n        \"companyName\": \"companyName\",\n        \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n        \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n        \"jobTitle\": \"New job application\",\n        \"location\": \"USA\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    },\n    {\n        \"_id\": \"656051aec80a304b5a9fbba4\",\n        \"companyName\": \"companyName\",\n        \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n        \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n        \"jobTitle\": \"New job application\",\n        \"location\": \"USA\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Application Delete Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.c3f38659-7c53-431f-a0c0-927fcd83f8b7",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "application_id",
+							"value": "656050c61c62131aab829cdd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/applications/?application_id=656050c61c62131aab829cdd",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"applications",
+						""
+					],
+					"query": [
+						{
+							"key": "application_id",
+							"value": "656050c61c62131aab829cdd"
+						}
+					]
+				},
+				"description": "This API endpoint allows you to add a new job application to the system. The request should be sent as an HTTP POST to the specified URL with the application ID as a query parameter.\n\n### Request Parameters\n\n- `application_id` (query parameter): The unique identifier for the application. This should be included in the URL.\n    \n\n### Request Body\n\nThe request body should contain the following parameters:\n\n- `companyName` (string): The name of the company where the application is being made.\n- `date` (string): The date of the application in the format \"Day, DD Month YYYY HH:MM:SS GMT\".\n- `jobLink` (string): The link to the job posting.\n- `jobTitle` (string): The title of the job being applied for.\n- `location` (string): The location of the job.\n- `user_id` (string): The unique identifier of the user making the application.\n    \n\n### Response\n\nThe response will contain the following parameters:\n\n- `_id` (string): The unique identifier of the application.\n- `companyName` (string): The name of the company.\n- `date` (string): The date of the application in the format \"Day, DD Month YYYY HH:MM:SS GMT\".\n- `jobLink` (string): The link to the job posting.\n- `jobTitle` (string): The title of the job.\n- `location` (string): The location of the job.\n- `user_id` (string): The unique identifier of the user.\n    \n\n### Example\n\nRequest:\n\n```\nPOST http://127.0.0.1:5000/applications/?application_id=656050c61c62131aab829cdd\nContent-Type: application/json\n{\n    \"companyName\": \"companyName\",\n    \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n    \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n    \"jobTitle\": \"New job application\",\n    \"location\": \"USA\",\n    \"user_id\": \"655d7f360374916d1b4d5ab9\"\n}\n\n ```\n\nResponse: **200 OK**\n\n```\n{\n    \"_id\": \"656050c61c62131aab829cdd\",\n    \"companyName\": \"companyName\",\n    \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n    \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n    \"jobTitle\": \"New job application\",\n    \"location\": \"USA\",\n    \"user_id\": \"655d7f360374916d1b4d5ab9\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "Application Delete Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "application_id",
+									"value": "656050c61c62131aab829cdd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications/?application_id=656050c61c62131aab829cdd",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications",
+								""
+							],
+							"query": [
+								{
+									"key": "application_id",
+									"value": "656050c61c62131aab829cdd"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 06:51:49 GMT"
+						}
+					],
+					"cookie": [],
+					"body": " {\n        \"_id\": \"656050c61c62131aab829cdd\",\n        \"companyName\": \"companyName\",\n        \"date\": \"Fri, 24 Nov 2023 00:00:00 GMT\",\n        \"jobLink\": \"https://jsonplaceholder.typicode.com/posts\",\n        \"jobTitle\": \"New job application\",\n        \"location\": \"USA\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    }"
+				},
+				{
+					"name": "Application Delete Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "application_id",
+									"value": "656050c61c62131aab829cdd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications/?application_id=656050c61c62131aab829cdd",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications",
+								""
+							],
+							"query": [
+								{
+									"key": "application_id",
+									"value": "656050c61c62131aab829cdd"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 14:59:06 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Application not Found\"\n}"
+				},
+				{
+					"name": "Application Delete Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "application_id",
+									"value": "656050c61c62131aab829cdd",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications/?application_id=656050c61c62131aab829cdd",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications",
+								""
+							],
+							"query": [
+								{
+									"key": "application_id",
+									"value": "656050c61c62131aab829cdd"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:00:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "New Application Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.1df4aa44-f921-4481-a660-985588ced1e6",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobTitle\":\"New job application\",\r\n    \"companyName\":\"companyName\",\r\n    \"date\":\"24/11/2023\",\r\n    \"jobLink\":\"https://jsonplaceholder.typicode.com/posts\",\r\n    \"location\":\"USA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/new/application",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"new",
+						"application"
+					]
+				},
+				"description": "This API endpoint allows you to create a new application by sending an HTTP POST request to the specified URL. The request should include the necessary parameters to create the application.\n\n### Request Parameters\n\n- jobTitle: Title of the job    \n    \n- CompanyName: Name of the company   \n    \n- date: Date of application  \n    \n- jobLink: Link for the job \n    \n- location: Location of the job  \n      \n    \n\n### Response\n\nThe response for this request will be a simple string indicating the status of the application creation. An example response would be:\n\n```\n\"Application Created\"\n\n ```\n\nPlease note that this is just an example response and the actual response may vary based on the implementation."
+			},
+			"response": [
+				{
+					"name": "New Application Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jobTitle\":\"New job application\",\r\n    \"companyName\":\"companyName\",\r\n    \"date\":\"24/11/2023\",\r\n    \"jobLink\":\"https://jsonplaceholder.typicode.com/posts\",\r\n    \"location\":\"USA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/new/application",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"new",
+								"application"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "22"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 06:43:44 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "\"Application Created\""
+				}
+			]
+		},
+		{
+			"name": "Application Update Endpoint",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.cb47ff20-56c4-4c89-905f-f6daa3d9ca2d",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"jobTitle\":\"Update job application\",\r\n    \"companyName\": \"updateName\",\r\n    \"date\":\"26/11/2023\",\r\n    \"jobLink\":\"https://updateplaceholder.typicode.com/posts\",\r\n    \"location\":\"Country\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/applications",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"applications"
+					]
+				},
+				"description": "This HTTP GET request is used to retrieve a list of applications. The request is sent to the URL [http://127.0.0.1:5000/applications](http://127.0.0.1:5000/applications).\n\n### Request Parameters\n\nThis request requires specific parameters to be included in the URL or body.Like job title, company name, date,job link and location which corresponds to the user.\n\n### Response\n\nThe response to this request will have a status code of 401 if the user is not authenticated. The response body will contain an error message.\n\nExample response body:\n\nExample 1: **200 OK**\n\n``` json\n{\n    \"jobTitle\": \"Update job application\",\n    \"companyName\": \"updateName\",\n    \"date\": \"26/11/2023\",\n    \"jobLink\": \"https://updateplaceholder.typicode.com/posts\",\n    \"location\": \"Country\"\n}\n\n ```\n\nExample : **401 Bad Request**\n\n``` json\n{\n    \"error\": \"Unauthorized\"\n}\n\n ```\n\nExample response body: **400 Bad Request**\n\n``` json\n{\n    \"error\": \"No applications found\"\n}\n\n ```\n\nHere are some examples of responses for this request:\n\n### Error Handling\n\nIf the user is not authenticated, the request will return a 401 status code and an error message in the response body."
+			},
+			"response": [
+				{
+					"name": "Application Update Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 17:15:09 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"jobTitle\":\"Update job application\",\n    \"companyName\": \"updateName\",\n    \"date\":\"26/11/2023\",\n    \"jobLink\":\"https://updateplaceholder.typicode.com/posts\",\n    \"location\":\"Country\"\n}"
+				},
+				{
+					"name": "Application Update Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 06:32:11 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No fields found in input\"\n}"
+				},
+				{
+					"name": "Application Update Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:02:51 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				},
+				{
+					"name": "Application Update Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/applications",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"applications"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 14:50:45 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No applications found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "New boards Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.437cde29-266c-43a0-876d-24e8cc2a8527",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Data Engineer\",\r\n    \"task\":\"Applied\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/boards",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"boards"
+					]
+				},
+				"description": "This API endpoint allows you to create a new board. A board represents a task or a project that can be assigned to a user.\n\nTo create a new board, send a POST request to `http://127.0.0.1:5000/boards`.\n\nThe request should include the following parameters in the request body:\n\n- `name` (string): The name of the board.\n- `task` (string): The task or project associated with the board.\n- `user_id` (string): The ID of the user to whom the board is assigned.\n    \n\nExample Request:\n\n```\nPOST http://127.0.0.1:5000/boards\nContent-Type: application/json\n{\n    \"name\": \"Data Engineer\",\n    \"task\": \"Applied\",\n    \"user_id\": \"655d54420374916d1b4d5ab6\"\n}\n\n ```\n\nThe response will include the newly created board object with the following properties:\n\n- `_id` (string): The unique identifier of the board.\n- `name` (string): The name of the board.\n- `task` (string): The task or project associated with the board.\n- `user_id` (string): The ID of the user to whom the board is assigned.\n    \n\nExample Response:\n\n```\nHTTP/1.1 200 OK\nContent-Type: application/json\n{\n    \"_id\": \"655d8fabd900edd31f690f10\",\n    \"name\": \"Data Engineer\",\n    \"task\": \"Applied\",\n    \"user_id\": \"655d54420374916d1b4d5ab6\"\n}\n\n ```\n\nIf there is an error during the creation of the board, the API will return a 500 status code along with an error message in the response body.\n\nExample Error Response:\n\n```\nHTTP/1.1 500 Internal Server Error\nContent-Type: application/json\n{\n    \"error\": \"...\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "New boards Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Data Engineer\",\r\n    \"task\":\"Applied\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/boards",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"boards"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:06:45 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\":\"655d8fabd900edd31f690f10\",\n        \"name\":\"Data Engineer\",\n        \"task\":\"Applied\",\n        \"user_id\":\"655d54420374916d1b4d5ab6\"\n    }\n]"
+				},
+				{
+					"name": "New boards Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Data Engineer\",\r\n    \"task\":\"Applied\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/boards",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"boards"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:13:41 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Boards retrival Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.e155af0a-27e7-40c8-99bd-765871400ff4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/boards",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"boards"
+					]
+				},
+				"description": "This API endpoint makes an HTTP GET request to retrieve a list of boards. The request URL is `http://127.0.0.1:5000/boards`.\n\n## Request\n\nThe request does not require any parameters.\n\n## Response\n\nThe response will be a JSON object containing information about the boards. Each board object will have the following properties:\n\n- `_id`: The unique identifier of the board.\n    \n- `name`: The name of the board.\n    \n- `userid`: The description of the board.\n    \n\nExample response: **200 OK**\n\n```\n[\n    {\n        \"_id\": \"655d8fe8d900edd31f690f14\",\n\n        \"name\": \"Full Stack Engineer\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    },\n    {\n        \"_id\": \"655d8ff3d900edd31f690f18\",\n        \"name\": \"Data Engineer\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    }\n\n]\n\n ```\n\nExample response: **500 Internal Server Error**\n\nPlease note that the actual response may contain more or fewer board objects."
+			},
+			"response": [
+				{
+					"name": "Boards retrival Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/boards",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"boards"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2658"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 26 Nov 2023 07:03:15 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": \"655d8fe8d900edd31f690f14\",\n        \"columns\": [\n            {\n                \"_id\": \"655d8fe8d900edd31f690f15\",\n                \"board_id\": \"655d8fe8d900edd31f690f14\",\n                \"name\": \"Applied\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"655d8fe8d900edd31f690f16\",\n                \"board_id\": \"655d8fe8d900edd31f690f14\",\n                \"name\": \"Rejected\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"655d8fe8d900edd31f690f17\",\n                \"board_id\": \"655d8fe8d900edd31f690f14\",\n                \"name\": \"Waiting For Referral\",\n                \"tasks\": []\n            }\n        ],\n        \"isActive\": true,\n        \"name\": \"Full Stack Engineer\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    },\n    {\n        \"_id\": \"655d8ff3d900edd31f690f18\",\n        \"columns\": [\n            {\n                \"_id\": \"655d8ff3d900edd31f690f19\",\n                \"board_id\": \"655d8ff3d900edd31f690f18\",\n                \"name\": \"Applied\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"655d8ff3d900edd31f690f1a\",\n                \"board_id\": \"655d8ff3d900edd31f690f18\",\n                \"name\": \"Rejected\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"655d8ff3d900edd31f690f1b\",\n                \"board_id\": \"655d8ff3d900edd31f690f18\",\n                \"name\": \"Waiting For Referral\",\n                \"tasks\": []\n            }\n        ],\n        \"isActive\": false,\n        \"name\": \"Data Engineer\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    },\n    {\n        \"_id\": \"655d9295d900edd31f690f1c\",\n        \"columns\": [\n            {\n                \"_id\": \"655d9295d900edd31f690f1d\",\n                \"board_id\": \"655d9295d900edd31f690f1c\",\n                \"name\": \"Applied\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"655d9295d900edd31f690f1e\",\n                \"board_id\": \"655d9295d900edd31f690f1c\",\n                \"name\": \"Rejected\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"655d9295d900edd31f690f1f\",\n                \"board_id\": \"655d9295d900edd31f690f1c\",\n                \"name\": \"Waiting For Referral\",\n                \"tasks\": []\n            }\n        ],\n        \"isActive\": false,\n        \"name\": \"Cybersecurity\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    },\n    {\n        \"_id\": \"65601d88239bb9e510aa6dae\",\n        \"columns\": [\n            {\n                \"_id\": \"65601d88239bb9e510aa6daf\",\n                \"board_id\": \"65601d88239bb9e510aa6dae\",\n                \"name\": \"Applied\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"65601d88239bb9e510aa6db0\",\n                \"board_id\": \"65601d88239bb9e510aa6dae\",\n                \"name\": \"Rejected\",\n                \"tasks\": []\n            },\n            {\n                \"_id\": \"65601d88239bb9e510aa6db1\",\n                \"board_id\": \"65601d88239bb9e510aa6dae\",\n                \"name\": \"Waiting For Referral\",\n                \"tasks\": []\n            }\n        ],\n        \"isActive\": true,\n        \"name\": \"Java Full Stack Developer\",\n        \"user_id\": \"655d7f360374916d1b4d5ab9\"\n    }\n]"
+				},
+				{
+					"name": "http://127.0.0.1:5000/boards",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/boards",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"boards"
+							]
+						}
+					},
+					"status": "NOT FOUND",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:12:50 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"User not found\"\n}"
+				},
+				{
+					"name": "Boards retrival Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/boards",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"boards"
+							]
+						}
+					},
+					"status": "NTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:15:58 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Board Delete Endpoint",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/board",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"board"
+					]
+				},
+				"description": "This API endpoint allows you to delete a board.\n\nTo delete a board, send an HTTP DELETE request to `http://127.0.0.1:5000/board`.\n\n### Request Parameters\n\nThis endpoint requires the boardid of the board to be deleted\n\n### Response\n\nThe API will respond with a status code indicating the success or failure of the request.\n\nIf the board is successfully deleted, the response will have a status code of 200 and an empty body.\n\nIf there is an error during the deletion process, the response will have a status code of 500 and an error message.\n\n### Example\n\n**Request:**\n\n```\nDELETE /board HTTP/1.1\nHost: 127.0.0.1:5000\n\n ```\n\n**Response: 200 OK**\n\n```\nHTTP/1.1 200 OK\nContent-Type: application/json\n{\n    \"_id\": \"655d8fabd900edd31f690f10\"\n}\n\n ```\n\n**500 Internal server error**\n\n```\nHTTP/1.1 500 Internal Server Error\nContent-Type: application/json\n{\n    \"error\": \"Internal Server Error\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:5000/board",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/board",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"board"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:24:38 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\":\"655d8fabd900edd31f690f10\"\n}"
+				},
+				{
+					"name": "Board Delete Endpoint",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/board",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"board"
+							]
+						}
+					},
+					"status": "UNAUTHORIZED",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 15:57:30 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Userid does not exist to delete\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Resume upload Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.016d06b8-820d-44df-adba-5c0415bb5426",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/Downloads/sample-1.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/resume",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"resume"
+					]
+				},
+				"description": "This API endpoint allows you to upload a resume. It is an HTTP POST request to the URL [http://127.0.0.1:5000/resume](http://127.0.0.1:5000/resume).\n\n### Request Parameters\n\nThis request requires the Body which contains a file as key and actual file to be uploaded as resume to the database.\n\n### Response\n\nThe response for this request will have a status code of 200 if the resume is successfully uploaded. The response body will contain a JSON object with a \"message\" property. The value of the \"message\" property will indicate the status of the resume upload.\n\n### Example Response\n\nExample 1: Status **200** Succesfully uploaded resume into Database\n\n``` json\n{\n    \"message\": \"resume successfully uploaded\"\n}\n\n ```\n\nExample 1: Status 4**00** Badrequest when the file is not selected in the body\n\n``` json\n{\n    \"message\": \"No resume file found in the input\"\n}\n\n ```\n\nPlease note that the actual response message may vary depending on the server's\n\nPlease note that the actual response message may vary depending on the server's implementation."
+			},
+			"response": [
+				{
+					"name": "http://127.0.0.1:5000/resume",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Downloads/Endpoints.js"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/resume",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"resume"
+							]
+						}
+					},
+					"status": "BAD REQUEST",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "46"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 06:06:38 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"No resume file found in the input\"\n}"
+				},
+				{
+					"name": "http://127.0.0.1:5000/resume",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Downloads/Endpoints.js"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/resume",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"resume"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "43"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 22 Nov 2023 06:15:35 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"resume successfully uploaded\"\n}"
+				},
+				{
+					"name": "Resume upload Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/D:/Downloads/sample-1.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/resume",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"resume"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 25 Nov 2023 22:14:52 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"resume successfully replaced\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Resume downlaod Endpoint",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "655d7f360374916d1b4d5ab9.053b23b0-ed3f-4872-b2b6-1ffe3165bcec",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/resume",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"resume"
+					]
+				},
+				"description": "This HTTP GET request is used to retrieve a resume from the server. The request is sent to the URL `http://127.0.0.1:5000/resume`.\n\nThe response received from the last execution of this request had a status code of 200, indicating a successful response. However, the response body was empty (`null`)."
+			},
+			"response": []
+		},
+		{
+			"name": "Add Columns",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ABC\",\r\n    \"tasks\":\"Applied\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/columns",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"columns"
+					]
+				},
+				"description": "This API endpoint allows you to add a new column. You can send an HTTP POST request to the specified URL to create a new column.\n\n## Request Parameters\n\nThe request should contain\n\n- `name`: The name of the column.\n    \n- `tasks`: The tasks associated with the column.\n    \n\n## Response\n\nThe response will contain the details of the created column in JSON format. The response will include the following fields:\n\n- `_id`: The unique identifier of the column.\n- `name`: The name of the column.\n- `tasks`: The tasks associated with the column.\n- `board_id`: The unique identifier of the board to which the column belongs.\n    \n\n## Examples\n\n### Request\n\nPOST [http://127.0.0.1:5000/columns](http://127.0.0.1:5000/columns)\n\n### Example Response\n\nStatus : **200 OK**\n\n``` json\n{\n    \"_id\": \"655d8ff3d900edd31f690f19\",\n    \"name\": \"ABC\",\n    \"tasks\": \"Applied\",\n    \"board_id\": \"655d8ff3d900edd31f690f18\"\n}\n\n ```\n\nStatus: **500 Internal Server Error**\n\n``` json\n{\n    \"error\": \"Internal server error\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "Add Columns",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ABC\",\r\n    \"tasks\":\"Applied\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/columns",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"columns"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 16:16:31 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\":\"655d8ff3d900edd31f690f19\",\n    \"name\":\"ABC\",\n    \"tasks\":\"Applied\",\n    \"board_id\":\"655d8ff3d900edd31f690f18\"\n}"
+				},
+				{
+					"name": "Add Columns",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ABC\",\r\n    \"tasks\":\"Applied\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/columns",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"columns"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 16:27:43 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal Server Error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Columns Endpoint",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ABC\",\r\n    \"tasks\":\"Applied\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/columns",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"columns"
+					]
+				},
+				"description": "This API endpoint allows you to add a new column. The HTTP POST request should be sent to `http://127.0.0.1:5000/columns`.\n\n### Request Parameters\n\nYou need to pass,\n\n- `name`: The name of the column.\n    \n- `tasks`: The tasks associated with the column.\n    \n\n### Response\n\nThe response for this request will have the following properties:\n\n- `_id`: A unique identifier for the column.\n- `name`: The name of the column.\n- `tasks`: The tasks associated with the column.\n- `board_id`: The identifier of the board to which the column belongs.\n    \n\n### Examples\n\nHere are some examples of the response for this request:\n\nExample 1: **200 OK**\n\n``` json\n{\n    \"_id\": \"655d8fe8d900edd31f690f17\",\n    \"name\": \"ABCD\",\n    \"tasks\": \"Waiting for referral\",\n    \"board_id\": \"655d8fe8d900edd31f690f14\"\n}\n\n ```\n\n### Error Handling\n\nIf there is an error in the request, the response will have a status code of 500 and an error message will be returned in the following format:\n\n``` json\n{\n    \"error\": \"Internal server error\"\n}\n\n ```"
+			},
+			"response": [
+				{
+					"name": "Update Columns Endpoint",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ABCD\",\r\n    \"tasks\":\"Waiting for referral\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/columns",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"columns"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 16:19:52 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\":\"655d8fe8d900edd31f690f17\",\n    \"name\":\"ABCD\",\n    \"tasks\":\"Waiting for referral\",\n    \"board_id\":\"655d8fe8d900edd31f690f14\"\n}"
+				},
+				{
+					"name": "Update Columns Endpoint",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ABCD\",\r\n    \"tasks\":\"Waiting for referral\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/columns",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"columns"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 16:26:49 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Column Endpoint",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ABCD\",\r\n    \"tasks\":\"Waiting for referral\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/columns?columnid=655d8fe8d900edd31f690f17",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"columns"
+					],
+					"query": [
+						{
+							"key": "columnid",
+							"value": "655d8fe8d900edd31f690f17"
+						}
+					]
+				},
+				"description": "This HTTP DELETE request is used to delete a specific column. The request should be made to the URL `http://127.0.0.1:5000/columns`.\n\n### Request Parameters\n\nWe need to pass the id,\n\ncolumnid: The columnid from which the column will be deleted\n\n### Response\n\nThe response will have a status code of 500 if the column to be deleted is not found. In this case, the response body will contain an error message.\n\n``` json\n{\n    \"error\":\"Internal server error\"\n}\n\n ```\n\nExample response body for a successful deletion: **200 OK**\n\n``` json\n{\n    \"_id\":\"655d8fe8d900edd31f690f17\"\n}\n\n ```\n\nPlease note that the `_id` field represents the unique identifier of the deleted column."
+			},
+			"response": [
+				{
+					"name": "Delete Column Endpoint",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ABCD\",\r\n    \"tasks\":\"Waiting for referral\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/columns",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"columns"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 16:22:57 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_id\":\"655d8fe8d900edd31f690f17\"\n}"
+				},
+				{
+					"name": "Delete Column Endpoint",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"ABCD\",\r\n    \"tasks\":\"Waiting for referral\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:5000/columns",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"columns"
+							]
+						}
+					},
+					"status": "INTERNAL SERVER ERROR",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 16:25:55 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Internal server error\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Boards extension Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/getBoards/extension",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"getBoards",
+						"extension"
+					]
+				},
+				"description": "This API endpoint makes an HTTP GET request to retrieve a list of boards with their names. The request URL is `http://127.0.0.1:5000/getBoards/extension`.\n\nThe response for this request is a JSON array containing objects with two properties: `_id` and `name`. The `_id` property is an object with a single property `$oid`, which represents the unique identifier of each board. The `name` property represents the name of the board.\n\nHere are some examples of the response for this request:\n\nHere is an example response for this request:\n\n``` json\n[\n    {\n        \"_id\": \"655d8fabd900edd31f690f11\",\n        \"name\": \"655d8fabd900edd31f690f11\",\n        \"tasks\": [],\n        \"board_id\": \"655d8fabd900edd31f690f10\"\n    }\n]\n\n ```\n\n1. Web Development Board:\n    - `_id`: {\"$oid\": \"6564d7b59a5b196d1249afa1\"}\n    - `name`: \"Web Development\"\n2. Java Jobs Board:\n    - `_id`: {\"$oid\": \"6564e4bd108b2ec716f0efb5\"}\n    - `name`: \"Java Jobs\"\n3. Test Board:\n    - `_id`: {\"$oid\": \"656526cd9ead6dbbd323c210\"}\n    - `name`: \"test board\"\n4. XYZ Board:\n    - `_id`: {\"$oid\": \"6565282b7bbc48a4bccfc0a3\"}\n    - `name`: \"XYZ\"\n\nPlease note that the actual values for `_id` and `name` properties may vary in different responses.\n\nTo use this API endpoint, make an HTTP GET request to the provided URL. The response will contain the list of boards along with their names."
+			},
+			"response": [
+				{
+					"name": "Boards extension Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:5000/getBoards/extension",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"getBoards",
+								"extension"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "387"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 27 Nov 2023 23:52:25 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"_id\": {\n            \"$oid\": \"6564d7b59a5b196d1249afa1\"\n        },\n        \"name\": \"Web Development\"\n    },\n    {\n        \"_id\": {\n            \"$oid\": \"6564e4bd108b2ec716f0efb5\"\n        },\n        \"name\": \"Java Jobs\"\n    },\n    {\n        \"_id\": {\n            \"$oid\": \"656526cd9ead6dbbd323c210\"\n        },\n        \"name\": \"test board\"\n    },\n    {\n        \"_id\": {\n            \"$oid\": \"6565282b7bbc48a4bccfc0a3\"\n        },\n        \"name\": \"XYZ\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Column extension Endpoint",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "boardid",
+						"value": "655d8fabd900edd31f690f10",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/getColumns/extension",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"getColumns",
+						"extension"
+					]
+				},
+				"description": "This API endpoint makes an HTTP GET request to retrieve the columns associated with a specific extension. The extension is provided as a path parameter in the URL.\n\n### Request\n\n- Method: GET\n- URL: `http://127.0.0.1:5000/getColumns/extension`\n    \n\n### Response\n\nThe last execution of this request returned a response with a status code of 200.\n\n#### Example Response\n\nHere is an example response for this request:\n\n``` json\n[\n    {\n        \"_id\": \"655d8fabd900edd31f690f11\",\n        \"name\": \"655d8fabd900edd31f690f11\",\n        \"tasks\": [],\n        \"board_id\": \"655d8fabd900edd31f690f10\"\n    }\n]\n\n ```\n\nPlease note that the actual response may contain different values, but the structure will remain the same."
+			},
+			"response": [
+				{
+					"name": "Column entension Endpoint",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "boardid",
+								"value": "655d8fabd900edd31f690f10",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:5000/getColumns/extension",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"getColumns",
+								"extension"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "3"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/1.0.1 Python/3.9.6"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 28 Nov 2023 00:03:28 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "[\r\n    {\r\n        \"_id\":\"655d8fabd900edd31f690f11\",\r\n        \"name\":\"655d8fabd900edd31f690f11\",\r\n        \"tasks\":[],\r\n        \"board_id\":\"655d8fabd900edd31f690f10\"\r\n    }\r\n]"
+				}
+			]
+		}
+	]
+}

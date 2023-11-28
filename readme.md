@@ -62,6 +62,7 @@ Ideal for professionals, job seekers, freelancers, and project managers, CareerP
     + [Hosted database with MongoDB Atlas](#hosted-database-with-mongodb-atlas)
 - [Setting up the Extension](#setting-up-the-extension)
 - [Using Docker image](#using-docker-image)
+- [API Documentation](#api-documentation)
 - [License](#license)
 - [How to Contribute](#how-to-contribute)
 - [Troubleshooting](#troubleshooting)
@@ -319,6 +320,14 @@ You are all set! The extension can be used to either add the job you've recently
 We have containerized our backend flask application and have uploaded our docker image in docker hub
 
 Follow [docker.md](./docker.md) file to use the docker image
+
+## API Documentation
+We have added the extensive documentation for our application which can be accessed through this link
+
+[API Documentation](https://documenter.getpostman.com/view/17890241/2s9YeEcsPC)
+
+You can use our Postman collection to import the routes into your postman application [Postman Collection](./Application%20Tracking%20System%20API%20Documentation.postman_collection.json)
+
 ## License
 The project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license. 
 
@@ -331,10 +340,10 @@ If you find yourself stuck at some problem, check our [Troubleshooting guide](./
 
 ## Team Members
 - [Bala Logesh Sudalaimuthu Pandian](https://github.com/Bala-Logesh)
-- [Ratish Kumar Sarvanan](https://github.com/RatishkumarS)
+- [Ratish Kumar Saravanan](https://github.com/RatishkumarS)
 - [Sahana Yelchuri](https://github.com/SahanaYelchuri)
 - [Vengatesh Deen Dayal](https://github.com/vengatesh99)
 
 ## Support
 
-For any queries and help, please reach out to us at: email
+For any queries and help, please reach out to us at: atsse2000@gmail.com

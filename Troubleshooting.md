@@ -55,4 +55,4 @@ Before troubleshooting, ensure:
 - If you're still facing issues:
 - Check if the problem has been reported in the Issues section.
 - If not listed, create a new issue with as much detail as possible.
-- For further help, contact us through the email id
+- For further help, contact us through our email: atsse2000@gmail.com
