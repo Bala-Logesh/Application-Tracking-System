@@ -11,7 +11,6 @@
 [![Issues](https://img.shields.io/github/issues/Bala-Logesh/SE23-61-Application-Tracking-System)](https://github.com/Bala-Logesh/SE23-61-Application-Tracking-System/issues/)
 [![Issues Closed](https://img.shields.io/github/issues-closed/Bala-Logesh/SE23-61-Application-Tracking-System)](https://GitHub.com/Bala-Logesh/SE23-61-Application-Tracking-System/)
 ![last commit](https://img.shields.io/github/last-commit/Bala-Logesh/SE23-61-Application-Tracking-System)
-![Lines of code](https://tokei.rs/b1/github/Bala-Logesh/SE23-61-Application-Tracking-System)
 [![Repo-size](https://img.shields.io/github/repo-size/Bala-Logesh/SE23-61-Application-Tracking-System)](https://GitHub.com/Bala-Logesh/SE23-61-Application-Tracking-System/)
 [![file_count](https://img.shields.io/github/directory-file-count/Bala-Logesh/SE23-61-Application-Tracking-System)](https://GitHub.com/Bala-Logesh/SE23-61-Application-Tracking-System/)
 [![language_count](https://img.shields.io/github/languages/count/Bala-Logesh/SE23-61-Application-Tracking-System)](https://GitHub.com/Bala-Logesh/SE23-61-Application-Tracking-System/)
