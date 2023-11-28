@@ -61,6 +61,7 @@ Ideal for professionals, job seekers, freelancers, and project managers, CareerP
     + [Local MongoDB](#local-mongodb)
     + [Hosted database with MongoDB Atlas](#hosted-database-with-mongodb-atlas)
 - [Setting up the Extension](#setting-up-the-extension)
+- [Using Docker image](#using-docker-image)
 - [License](#license)
 - [How to Contribute](#how-to-contribute)
 - [Troubleshooting](#troubleshooting)
@@ -313,6 +314,11 @@ After you have setup all these files according to your implementation, load this
 
 You are all set! The extension can be used to either add the job you've recently applied for or to function as a reminders board, allowing you to save your job postings on any job board. This way, you can revisit them later for future applications.
 
+
+## Using Docker image
+We have containerized our backend flask application and have uploaded our docker image in docker hub
+
+Follow [docker.md](./docker.md) file to use the docker image
 ## License
 The project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license. 
 
