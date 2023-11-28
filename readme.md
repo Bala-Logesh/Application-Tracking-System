@@ -4,7 +4,7 @@
 <!-- Insert Functionality video here -->
 
 [![GitHub license](https://img.shields.io/github/license/Bala-Logesh/SE23-61-Application-Tracking-System)](https://github.com/Bala-Logesh/SE23-61-Application-Tracking-System/blob/main/LICENSE)
-[![DOI](https://zenodo.org/badge/707286618.svg)](https://zenodo.org/doi/10.5281/zenodo.10023565)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10211843.svg)](https://doi.org/10.5281/zenodo.10211843)
 [![codecov](https://codecov.io/gh/Bala-Logesh/SE23-61-Application-Tracking-System/graph/badge.svg?token=4J3145QGUU)](https://codecov.io/gh/Bala-Logesh/SE23-61-Application-Tracking-System)
 ![Github pull requests](https://img.shields.io/github/issues-pr/Bala-Logesh/SE23-61-Application-Tracking-System)
 ![Github closed pull requests](https://img.shields.io/github/issues-pr-closed/Bala-Logesh/SE23-61-Application-Tracking-System)
