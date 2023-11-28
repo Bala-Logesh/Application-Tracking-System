@@ -80,8 +80,8 @@ The Landing page displayed when the user first enters our application
 
 The introductory visual interface displayed from which a user is able to register and log into the application.
 
-<p align="center"><img width="700" src="resources/login.png"></p>
-<p align="center"><img width="700" src="resources/signup.png"></p>
+<p align="center"><img width="700" alt="Login Page" src="resources/login.png"></p>
+<p align="center"><img width="700" alt="Sign Up"  src="resources/signup.png"></p>
 
 ### Home Screen
 
@@ -92,22 +92,22 @@ The introductory visual interface displayed from which a user is able to access 
 ### Adding, Updating and Deleting Boards
 
 A user can add a new board or edit existing boards to keep track of data or even delete a board
-<p align="center"><img width="700" src="resources/add_board.png"></p>
+<p align="center"><img width="700" alt="Adding Board" src="resources/add_board.png"></p>
 
 ### Adding, Updating and Deleting Tasks
 
 A user can add a new task or edit existing tasks to keep track of tasks or even delete a task
-<p align="center"><img width="700" src="resources/tasks.png"></p>
+<p align="center"><img width="700" alt="Tasks Window" src="resources/tasks.png"></p>
 
 ### Dragging and dropping tasks between columns
 
 A user can just drag and drop a task from one column to another
-<p align="center"><video width="700" controls src="resources/drag_and_drop.mp4"></p>
+<p align="center"><video width="700" alt="Drag and Drop" controls src="resources/drag_and_drop.mp4"></p>
 
 ### Night mode implementation
 
 We have implemented the night mode feature as well which diversifies the application.
-<p align="center"><img width="700" src="resources/dark.png"></p>
+<p align="center"><img width="700" alt ="Dark Mode" src="resources/dark.png"></p>
 
 ## What's New
 
