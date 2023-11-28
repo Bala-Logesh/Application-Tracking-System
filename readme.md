@@ -346,3 +346,5 @@ If you find yourself stuck at some problem, check our [Troubleshooting guide](./
 ## Support
 
 For any queries and help, please reach out to us at: atsse2000@gmail.com
+
+If you wish to subscribe to any future updates or changes, please send an mail to our email atsse2000@gmail.com. We will add you to our mailing list!
